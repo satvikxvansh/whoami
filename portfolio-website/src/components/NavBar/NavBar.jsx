@@ -1,13 +1,15 @@
 import { useState } from 'react';
-import { FaArrowAltCircleRight, FaArrowRight } from 'react-icons/fa';
+import { FaArrowRight } from 'react-icons/fa';
 import { HiMenu, HiX } from 'react-icons/hi';
+import { useLocation, Link } from "react-router";
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
-
+    const location = useLocation();
+    // console.log(location);
     const toggleMenu = () => setIsOpen(!isOpen);
 
-    const links = ['Home', 'Skills', 'Projects', 'Contact'];
+    const links = ['Skills', 'Projects'];
 
     return (
         <div className="flex justify-center">
@@ -20,13 +22,21 @@ export default function Navbar() {
 
                     {/* Desktop Links */}
                     <ul className="hidden md:flex space-x-15">
+                        <li>
+                            {(location.pathname != "/Home") ?
+                            <Link className="text-indigo-200 font-medium hover:text-indigo-600 transition-all" to="/Home">Home</Link> : 
+                            <a href="#home" className="text-indigo-200 font-medium hover:text-indigo-600 transition-all">Home</a>}
+                        </li>
                         {links.map(link => (
-                            <li key={link}>
-                                <a href={`#${link.toLowerCase()}`} className="text-indigo-200 font-medium hover:text-indigo-600 transition-all">
-                                    {link}
-                                </a>
+                            <li>
+                                {(location.pathname != "/Home") ?
+                                <Link className="text-indigo-200 font-medium hover:text-indigo-600 transition-all" to="/Home">{link}</Link> : 
+                                <a href={`#${link.toLowerCase()}`} className="text-indigo-200 font-medium hover:text-indigo-600 transition-all">{link}</a>}
                             </li>
                         ))}
+                        <li>
+                            <Link className="text-indigo-200 font-medium hover:text-indigo-600 transition-all" to="/Contact">Contact</Link>
+                        </li>
                     </ul>
 
                     <div>
