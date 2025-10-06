@@ -1,8 +1,33 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import './Home.css'
+import { CursorTooltip } from "../Tooltip";
 import { FaNewspaper, FaPage4, FaPagelines, FaPhone } from 'react-icons/fa'
 
 function Home() {
+  const lang = [
+    { id: 1, content: "C++", src: "../../public/c++.webp" },
+    { id: 1, content: "C", src: "../../public/c.webp" },
+    { id: 2, content: "Python", src: "../../public/py.webp" },
+    { id: 3, content: "JavaScript", src: "../../public/js.webp" },
+    { id: 4, content: "Java", src: "../../public/java.webp" },
+    { id: 5, content: "Typescript", src: "../../public/typ.webp" },
+  ];
+  const Frontend = [
+    { id: 1, content: "HTML", src: "../../public/html.webp" },
+    { id: 1, content: "CSS", src: "../../public/css3.png" },
+    { id: 2, content: "Tailwind", src: "../../public/tailwind.webp" },
+    { id: 3, content: "React", src: "../../public/react.webp" },
+    { id: 4, content: "NextJS", src: "../../public/next.webp" },
+  ];
+  const Backend = [
+    { id: 1, content: "node.js", src: "../../public/node.webp" },
+    { id: 1, content: "ExpressJS", src: "../../public/express.png" },
+    { id: 2, content: "MongoDB", src: "../../public/mongo.webp" },
+  ];
+  const tools = [
+    { id: 1, content: "Git", src: "../../public/git.webp" },
+    { id: 1, content: "GitHub", src: "../../public/github.webp" },
+  ];
   
   return (
     <>
@@ -20,7 +45,7 @@ function Home() {
               <h1 className="lg:text-6xl md:text-5xl xl:text-8xl  font-bold pb-3 bg-linear-[160deg] from-purple-950 from-5% via-purple-600 via-50% to-pink-300 to-90% inline-block text-transparent bg-clip-text">Hi! This is <br /> Satvik Vansh<span className="text-yellow-300">.</span></h1>
             </div>
             <div className="flex items-center">
-              <p className="bg-linear-[160deg] from-gray-50 to-gray-400 inline-block text-transparent bg-clip-text text-xl text-l font-light">(NEED TO CHANGE) Experienced Software Engineer specializing in <span className='font-medium'>Full Stack Development, <br/>AI/ML, and Computer Vision</span>. Available for hire for innovative software <br/>development projects and recruitment opportunities.</p>
+              <p className="bg-linear-[160deg] from-gray-50 to-gray-400 inline-block text-transparent bg-clip-text text-xl text-l font-light">(NEED TO CHANGE) Experienced Software Engineer specializing in <span className='font-medium'>Full Stack Development, <br />AI/ML, and Computer Vision</span>. Available for hire for innovative software <br />development projects and recruitment opportunities.</p>
             </div>
             <div className="pt-10 flex">
               <button id='resume' className="p-3 mr-5 rounded-sm bg-purple-600 text-white font-medium hover:bg-purple-500 transition-all duration-200 hover:shadow-xl shadow-purple-400/50">Find my Resume</button>
@@ -48,36 +73,53 @@ function Home() {
           <div className='mx-80'>
             <div className='font-medium mb-5 text-2xl text-white'>Programming Languages</div>
             <div className='ml-2 flex flex-row'>
-              <div className='mr-12 rounded-xl w-22 h-22'><img className='object-fill' src={"../../public/c++.webp"} alt="" /></div>
-              <div className='mr-12 rounded-xl w-22 h-22'><img className='object-fill' src={"../../public/c.webp"} alt="" /></div>
-              <div className='mr-12 rounded-xl w-22 h-22'><img className='object-fill' src={"../../public/py.webp"} alt="" /></div>
-              <div className='mr-12 rounded-xl w-22 h-22'><img className='rounded-xl object-fill' src={"../../public/js.webp"} alt="" /></div>
-              <div className='mr-12 rounded-xl w-22 h-22'><img className='object-fill' src={"../../public/java.webp"} alt="" /></div>
-              <div className='mr-12 rounded-xl w-22 h-22'><img className='object-fill' src={"../../public/typ.webp"} alt="" /></div>
-              
+              {lang.map((tech) => (
+                <div className='mr-12 w-22 h-22'>
+                  <CursorTooltip key={tech.id} content={tech.content}>
+                    <img className='object-fill' src={tech.src} alt={tech.content} />
+                  </CursorTooltip>
+                </div>
+              ))}
             </div>
 
             <div className=' my-10 font-medium mb-5 text-2xl text-white'>Frontend</div>
             <div className='ml-2 flex flex-row'>
-              <div className='mr-12 rounded-xl w-22 h-22'><img className='object-fill' src={"../../public/html.webp"} alt="" /></div>
-              <div className='mr-12 rounded-xl w-22 h-22'><img className='scale-130' src={"../../public/css3.png"} alt="" /></div>
-              <div className='mr-12 rounded-xl w-22 h-22'><img className='object-fill' src={"../../public/tailwind.webp"} alt="" /></div>
-              <div className='mr-12 rounded-xl w-22 h-22'><img className='object-fill' src={"../../public/react.webp"} alt="" /></div>
-              <div className='mr-12 rounded-xl w-22 h-22'><img className='object-contain' src={"../../public/next.webp"} alt="" /></div>
+              {Frontend.map((tech) => (
+                <div className='mr-12 w-22 h-22'>
+                  <CursorTooltip key={tech.id} content={tech.content}>
+                    <img className='object-fill' src={tech.src} alt={tech.content} />
+                  </CursorTooltip>
+                </div>
+              ))}
             </div>
 
             <div className=' my-10 font-medium mb-5 text-2xl text-white'>Backend</div>
             <div className='ml-2 flex flex-row'>
-              <div className='mr-12 w-22 h-22'><img className='h-full w-full object-contain' src={"../../public/node.webp"} alt="" /></div>
-              <div className='mr-12 w-22 h-22'><img className='rounded-xl h-full w-full object-contain' src={"../../public/express.png"} alt="" /></div>
-              <div className='mr-12 w-22 h-22'><img className='h-full w-full object-cover rounded-xl' src={"../../public/mongo.webp"} alt="" /></div>
+              {Backend.map((tech) => (
+                <div className='mr-12 w-22 h-22'>
+                  <CursorTooltip key={tech.id} content={tech.content}>
+                    <img className='object-fill' src={tech.src} alt={tech.content} />
+                  </CursorTooltip>
+                </div>
+              ))}
             </div>
 
             <div className=' my-10 font-medium mb-5 text-2xl text-white'>Tools</div>
             <div className='ml-2 flex flex-row'>
-              <div className='mr-12 w-22 h-22'><img className='h-full w-full object-contain' src={"../../public/git.webp"} alt="" /></div>
-              <div className='mr-12 w-22 h-22'><img className='h-full w-full object-contain rounded-xl' src={"../../public/github.webp"} alt="" /></div>
-              <div className='mr-12 w-22 h-22'><img className='h-full w-full object-cover rounded-xl' src={"../../public/vs.jpg"} alt="" /></div>
+              {tools.map((tech) => (
+                <div className='mr-12 w-22 h-22'>
+                  <CursorTooltip key={tech.id} content={tech.content}>
+                    <img className='object-fill' src={tech.src} alt={tech.content} />
+                  </CursorTooltip>
+                </div>
+              ))}
+              <CursorTooltip content="VS Code">
+                <div className='mr-12 w-22 h-22'><img className='h-full w-full object-cover rounded-xl' src={"../../public/vs.jpg"} alt="" /></div>
+              </CursorTooltip>
+            </div>
+            
+            <div className='ml-2'>
+              
             </div>
 
           </div>
@@ -106,7 +148,7 @@ function Home() {
             <div className='w-90 h-100 bg-blue-600 rounded-2xl'></div>
             <div className='w-90 h-100 bg-blue-600 rounded-2xl'></div> */}
           </div>
-          
+
         </div>
 
       </div>
