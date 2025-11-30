@@ -1,63 +1,78 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React from 'react';
+import TextCursor from '../TextCursor';
 
-export default function ContactMe() {
+const ContactMe = () => {
   return (
-    <div className="min-h-screen bg-[#180133] flex items-center justify-center px-4 py-12">
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="bg-purple-950 text-white rounded-2xl shadow-lg p-8 md:p-12 w-full max-w-xl"
-      >
-        <h2 className="text-3xl md:text-4xl font-bold text-pink-300 mb-8 text-center">
-          Contact Me
-        </h2>
+    <div className="min-h-screen flex flex-col items-center px-4">
+      <div className="flex relative w-full max-w-md rounded-2xl bg-gray-900/80 border border-gray-700/60 shadow-2xl p-6 sm:p-8 backdrop-blur">
+        {/* Glow */}
+        <div className="pointer-events-none absolute -inset-px rounded-2xl bg-gradient-to-r from-indigo-500/30 via-purple-500/30 to-pink-500/30 opacity-60 blur-xl" />
 
-        <form className="space-y-6">
-          <div>
-            <label className="block text-sm font-medium text-pink-300 mb-1">
-              Name
-            </label>
-            <input
-              type="text"
-              placeholder="Your name"
-              className="w-full px-4 py-2 rounded-lg bg-purple-600 text-white placeholder-pink-300 focus:outline-none focus:ring-2 focus:ring-pink-300 transition duration-200"
-            />
-          </div>
+        <div className="relative">
+          <h2 className="text-2xl font-semibold text-white mb-2">
+            Contact Me
+          </h2>
+          <p className="text-sm text-gray-400 mb-6">
+            Have a question or want to work together? Drop a message below.
+          </p>
 
-          <div>
-            <label className="block text-sm font-medium text-pink-300 mb-1">
-              Email
-            </label>
-            <input
-              type="email"
-              placeholder="you@example.com"
-              className="w-full px-4 py-2 rounded-lg bg-purple-600 text-white placeholder-pink-300 focus:outline-none focus:ring-2 focus:ring-pink-300 transition duration-200"
-            />
-          </div>
+          <form className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-1">
+                Name
+              </label>
+              <input
+                type="text"
+                placeholder="Your name"
+                className="w-full px-4 py-2.5 rounded-lg bg-gray-800/80 border border-gray-700 text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
+              />
+            </div>
 
-          <div>
-            <label className="block text-sm font-medium text-pink-300 mb-1">
-              Message
-            </label>
-            <textarea
-              rows="5"
-              placeholder="Type your message..."
-              className="w-full px-4 py-2 rounded-lg bg-purple-600 text-white placeholder-pink-300 focus:outline-none focus:ring-2 focus:ring-pink-300 transition duration-200 resize-none"
-            ></textarea>
-          </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-1">
+                Email
+              </label>
+              <input
+                type="email"
+                placeholder="you@example.com"
+                className="w-full px-4 py-2.5 rounded-lg bg-gray-800/80 border border-gray-700 text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
+              />
+            </div>
 
-          <div className="text-center">
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-1">
+                Message
+              </label>
+              <textarea
+                rows="4"
+                placeholder="Write your message..."
+                className="w-full px-4 py-2.5 rounded-lg bg-gray-800/80 border border-gray-700 text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition resize-none"
+              />
+            </div>
+
             <button
               type="submit"
-              className="mt-4 bg-pink-300 text-purple-950 font-bold px-6 py-2 rounded-xl hover:bg-pink-400 transition duration-300 shadow-lg hover:shadow-pink-500/50"
+              className="inline-flex items-center justify-center w-full gap-2 px-6 py-3 bg-gray-900 hover:bg-gray-800 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-500/40"
             >
               Send Message
             </button>
-          </div>
-        </form>
-      </motion.div>
+          </form>
+        </div>
+      </div>
+      <div className='flex'>
+        <TextCursor
+          text="Connect with me!"
+          spacing={80}
+          followMouseDirection={true}
+          randomFloat={true}
+          exitDuration={0.3}
+          removalInterval={20}
+          maxPoints={10}
+        />
+      </div>
     </div>
+    
   );
-}
+};
+
+export default ContactMe;
